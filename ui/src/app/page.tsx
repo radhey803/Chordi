@@ -6,6 +6,8 @@ import FileDownload from '@/components/FileDownload';
 import InviteCode from '@/components/InviteCode';
 import axios from 'axios';
 
+const API_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL || 'http://localhost:8080';
+
 export default function Home() {
   const [uploadedFile, setUploadedFile] = useState<File | null>(null);
   const [isUploading, setIsUploading] = useState(false);
@@ -21,7 +23,7 @@ export default function Home() {
       const formData = new FormData();
       formData.append('file', file);
       
-      const response = await axios.post('/api/upload', formData, {
+      const response = await axios.post(`${API_BASE_URL}/upload`, formData, {
         headers: {
           'Content-Type': 'multipart/form-data',
         },
@@ -41,7 +43,7 @@ export default function Home() {
     
     try {
       // Request download from Java backend
-      const response = await axios.get(`/api/download/${port}`, {
+      const response = await axios.get(`${API_BASE_URL}/download/${port}`, {
         responseType: 'blob',
       });
       
