@@ -69,8 +69,8 @@ public class FileController {
                 return;
             }
 
-            String response = "Not Found";
-            exchange.sendResponseHeaders(404, response.getBytes().length);
+            String response = "Server is running";
+            exchange.sendResponseHeaders(200, response.getBytes().length);
             try (OutputStream os = exchange.getResponseBody()) {
                 os.write(response.getBytes());
             }
