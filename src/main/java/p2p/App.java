@@ -9,11 +9,15 @@ import java.io.IOException;
 public class App {
     public static void main(String[] args) {
         try {
-            // Start the API server on port 8080
-            FileController fileController = new FileController(8080);
+            // Get port from environment variable for Render, default to 8080 for local dev
+            String portStr = System.getenv("PORT");
+            int port = (portStr != null && !portStr.isEmpty()) ? Integer.parseInt(portStr) : 8080;
+
+            // Start the API server on the configured port
+            FileController fileController = new FileController(port);
             fileController.start();
             
-            System.out.println("PeerLink server started on port 8080");
+            System.out.println("PeerLink server started on port " + port);
             System.out.println("UI available at http://localhost:3000");
             
             Runtime.getRuntime().addShutdownHook(new Thread(() -> {
