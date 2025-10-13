@@ -66,7 +66,7 @@ To start the backend server:
 ```bash
 cd ..  # Go back to the project root
 mvn clean package
-java -jar target/p2p-1.0-SNAPSHOT.jar
+java -jar target/Chordi-1.0-SNAPSHOT.jar
 ```
 
 ## Project Structure
